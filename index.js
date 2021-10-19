@@ -140,7 +140,7 @@
 //         order.forEach(key => {
 //             res[key] = obj[key];
 //         });
-        
+
 //         return res;
 //     }
 //     sortByPosition(Object.fromEntries(map))
@@ -154,11 +154,93 @@
 // })(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500])
 
 
+/**
+ * 1. 뒤에 있는 기능이 먼저 돼도 앞에 기능이 100 안되면 배포안됨
+ * 2. 뒤 기능이 먼저 완료 돼고 answer에 추가하지 않고 앞에 기능이 완료되면 기능수 더해줌
+ * 
+ */
+// (function solution(progresses, speeds) {
+//     var answer = [];
+//     let cnt = 0;
 
-(function solution(progresses, speeds) {
-    var answer = [];
-    return answer;
-})()
+//     // progresses가 삭제돼서 0될 때까지 돌아감
+//     while (progresses.length > 0) {
+//         for (let i = 0; i < progresses.length; i++) {
+//             // 작업률 계산
+//             progresses[i] += speeds[i]
+//         }
+//         while (true) {
+//             // 앞에 있는 기능이 100보다 크거나 같으면 작업과 작업속도 배열에서 제거
+//             if (progresses[0] >= 100) {
+//                 cnt += 1;
+//                 progresses.shift();
+//                 speeds.shift();
+//             } else {
+//                 if (cnt !== 0) {
+//                     // 앞에 완료된 작업이 있으면 개수 푸시후 종료
+//                     answer.push(cnt);
+//                 }
+
+//                 // cnt 초기화
+//                 cnt = 0;
+//                 break;
+//             }
+//         }
+//     }
+
+//     return answer;
+// })(
+//     [93, 30, 55],
+//     [1, 30, 5])
+
+/**
+ * 1. 대기목록에서 위치 값 뽑아내고
+ * 2. 내림차순으로 정렬
+ * 3. 뽑아낸 값 을 정렬한 값에서 찾아내기
+ * 
+ * 중복된 값에서 정렬이 돼도 그 값을 찾을 수 있는 방법
+ */
+(function solution(priorities, location) {
+    
+    // let answer = 0;
+    // let select = priorities[location];
+
+    // let sortPriorities = priorities.sort((a, b) => b - a);
+
+    // answer = sortPriorities.indexOf(select) + 1;
+    
+    // [2,1,3,2]
+    // [3,2,2,1]
+    // 
+    /**
+     * iel 2
+     * jel 1
+     */
+    for (let i = 0; i < priorities.length; i++) {
+        const iEl = priorities[i];
+
+        for (let j = i + 1; j < priorities.length; j++) {
+            const jEl = priorities[j];
+            
+            
+            if (iEl <= jEl) {
+                if (location <= i || location <= j) {
+                    
+                }
+                priorities.splice(i, 0, priorities.splice(j, 1)[0])
+            }
+
+            
+
+
+        }
+        
+    }
+
+console.log(priorities)
+
+})([2, 1, 3, 2], 2)
+
 
 
 
